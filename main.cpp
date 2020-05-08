@@ -47,11 +47,35 @@ int main() {
 				int num;
 				cout<<"Ingrese un numero: ";
 				cin>>num;
-				while(num<=0){
-					cout<<endl<<"El Numero ingresado debe ser mayor que 0"<<endl;
+				while(num<=1){
+					cout<<endl<<"El Numero ingresado debe ser mayor que 1"<<endl;
 					cout<<"Ingrese un numero: ";
 					cin>>num;
 				}//fin while de validacion.
+				
+				int array1[num] = {};
+				int array2[num]= {};
+				array2[0] = 1;
+				array2[1] = 1;
+				cout<<array2[0]<<","<<endl;
+				cout<<array2[0]<<","<<array2[1]<<endl;
+				
+				for(int i = 2; i < num; i++){
+					array1[0] = 1;
+					array1[i] = 1;
+					cout<<"1,";
+					for(int j = 1; j < i;j++){
+						array1[j] = array2[j] + array2[j - 1];
+						cout<<array1[j]<<",";
+					}
+					cout<<"1,";
+					cout<<endl;
+					for(int k = 0; k < num;k++){
+						array2[k] = array1[k];
+					}
+					
+					
+				}
 				break;
 			}
 			
