@@ -8,6 +8,8 @@ using std::endl;
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
+int mcd(int,int);
+
 int main() {
 	
 	int option = 0;
@@ -16,14 +18,44 @@ int main() {
 		cin>>option;
 		switch(option){
 			case 1:{
+				int contador = 0;
+				int bandera = 1;
+				int mod;
+				int num;
+				cout<<"Ingrese un numero: ";
+				cin>>num;
+				while(num<=0){
+					cout<<endl<<"El Numero ingresado debe ser mayor que 0"<<endl;
+					cout<<"Ingrese un numero: ";
+					cin>>num;
+				}//fin while de validacion.
+				
+				while(bandera <= num){
+					
+					if(mcd(num,bandera) == 1)
+						contador++;
+					bandera++;	
+				}
+				
+				
+				
+				cout<<"El Resultado es: "<<contador<<endl;
 				break;
 			}
 			
 			case 2:{
+				int num;
+				cout<<"Ingrese un numero: ";
+				cin>>num;
+				while(num<=0){
+					cout<<endl<<"El Numero ingresado debe ser mayor que 0"<<endl;
+					cout<<"Ingrese un numero: ";
+					cin>>num;
+				}//fin while de validacion.
 				break;
 			}
 			
-			case 3:{
+			case 3:{//simalacion del juego
 				int player1 = 0;
 				int player2 = 0;
 				int size;
@@ -40,7 +72,7 @@ int main() {
 				int array2[size] = {};
 				for(int i = 0; i<size; i++){
 					num_random = -50 + rand() % (51-(-50));
-					cout<<endl<<num_random;
+					
 					array[i] = num_random;
 					array2[i]=num_random;
 				}
@@ -49,13 +81,13 @@ int main() {
 				int cont = 0;
 				
 				int posicion;
-				cout<<"¡QUE EMPIEZE EL JUEGO!"<<endl<<endl;
+				cout<<endl<<"¡QUE EMPIECE EL JUEGO!"<<endl<<endl;
 				while(cont < turnos){
 					
 					cout<<"J1 Escoge: ";
 					cin>>posicion;
-					while(array2[posicion] == -100){
-						cout<<"Esta casilla ya fue elegida previamente"<<endl;
+					while(array2[posicion] == -100 || posicion > size){
+						cout<<"Esta casilla ya fue elegida previamente o La posicion no existe"<<endl;
 						cout<<"J1 Escoge: ";
 						cin>>posicion;
 					}//validacion que haya escogido otra casilla
@@ -64,8 +96,8 @@ int main() {
 					array2[posicion] = -100;
 					cout<<"J2 Escoge: ";
 					cin>>posicion;
-					while(array2[posicion] == -100){
-						cout<<"Esta casilla ya fue elegida previamente"<<endl;
+					while(array2[posicion] == -100 || posicion > size){
+						cout<<"Esta casilla ya fue elegida previamente o La posicion no existe"<<endl;
 						cout<<endl<<"J2 Escoge: ";
 						cin>>posicion;
 					}//validacion que haya escogido otra casilla
@@ -100,4 +132,15 @@ int main() {
 		}//fin del switch
 	}//fin del while
 	return 0;
+}
+
+
+
+int mcd(int a,int b){
+	int resultado;
+	for(int i = 1; i <= b;i++){
+		if(a % i == 0 && b % i == 0 )
+			resultado = i;
+	}	
+	return resultado;
 }
